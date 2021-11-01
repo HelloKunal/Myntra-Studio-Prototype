@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import styles from './styles';
 import {Picker} from '@react-native-picker/picker';
 import product from '../../data/product';
@@ -12,7 +12,7 @@ const ProductScreen = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <Text style={styles.title}>{product.title}</Text>
 
       {/*Image Carosel*/}
@@ -45,7 +45,7 @@ const ProductScreen = () => {
       {/*Buttons*/}
       <Button text={'ADD TO CART'} containerStyles={{backgroundColor: '#FFC0CB'}} onPress={() => {console.warn('Add to cart')}} />
       <Button text={'BUY NOW'} onPress={() => {console.warn('Buy Now')}} />
-    </View>
+    </ScrollView>
   );
 };
 

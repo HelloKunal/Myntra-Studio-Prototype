@@ -2,13 +2,19 @@ import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import CartProductItem from '../../components/CartProductItem'
 import Button from '../../components/Button';
+import {useNavigation} from '@react-navigation/native';
 
 import products from '../../data/cart';
 
 const ShoppingCartScreen = () => {
+  const navigation = useNavigation();
 
   const totalPrice = products.reduce((summedPrice, product) =>
     summedPrice + product.item.price * product.quantity, 0,);
+
+  const onCheckout = () => {
+    navigation.navigate('AddressScreen')
+  }
 
   return (
     <View style={styles.page}>
@@ -18,7 +24,7 @@ const ShoppingCartScreen = () => {
         </Text>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <Button text={'ADD TO CART'} containerStyles={{width: 180}} onPress={() => {console.warn('Add to cart')}} />
-          <Button text={'BUY NOW'} containerStyles={{width: 180}} onPress={() => {console.warn('Buy Now')}} />
+          <Button text={'BUY NOW'} containerStyles={{width: 180}} onPress={onCheckout} />
         </View>
       </View>
       {/* Render Product Component */}

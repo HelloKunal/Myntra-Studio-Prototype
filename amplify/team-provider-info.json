@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myntrastudio-dev-105956-authRole",
+      "UnauthRoleArn": "arn:aws:iam::466886733210:role/amplify-myntrastudio-dev-105956-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::466886733210:role/amplify-myntrastudio-dev-105956-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-myntrastudio-dev-105956-deployment",
+      "UnauthRoleName": "amplify-myntrastudio-dev-105956-unauthRole",
+      "StackName": "amplify-myntrastudio-dev-105956",
+      "StackId": "arn:aws:cloudformation:us-east-1:466886733210:stack/amplify-myntrastudio-dev-105956/ec0afc90-3b9d-11ec-a37c-12b4e91bf9eb",
+      "AmplifyAppId": "d2q8ct1b9ztz72"
+    },
+    "categories": {
+      "auth": {
+        "myntrastudio87b64212": {}
+      }
+    }
+  }
+}

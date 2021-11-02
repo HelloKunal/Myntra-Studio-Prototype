@@ -15,9 +15,17 @@ import {View, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router'
 
+import Amplify, {Auth} from 'aws-amplify'
+import awsconfig from './aws-exports';
+import {withAuthenticator} from 'aws-amplify-react-native'
+
+import config from './src/aws-exports'
+Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  // Auth.signIn(username, password) for blank start
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1,
@@ -31,4 +39,5 @@ const App = () => {
   );
 };
 
-export default App;
+export default withAuthenticator(App);
+// export default App;

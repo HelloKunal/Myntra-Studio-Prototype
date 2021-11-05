@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 const AddressScreen = () => {
   const onLogout = () => {
     Auth.signOut();
+    // console.log("Done");
   };
   return (
     <SafeAreaView>

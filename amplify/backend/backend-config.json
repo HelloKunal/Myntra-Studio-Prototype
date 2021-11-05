@@ -1,6 +1,6 @@
 {
   "auth": {
-    "myntrastudio87b64212": {
+    "myntrastudio452e1563": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -23,6 +23,24 @@
         "verificationMechanisms": [
           "EMAIL"
         ]
+      }
+    }
+  },
+  "api": {
+    "myntrastudio": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 365,
+              "description": "api key myntra"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
       }
     }
   }

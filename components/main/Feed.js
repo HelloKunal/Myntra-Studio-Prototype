@@ -6,6 +6,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { connect } from 'react-redux'
 
+import ProductScreen from '../../src/screens/ProductScreen'
+
 function Feed(props) {
     const [posts, setPosts] = useState([]);
 
@@ -54,6 +56,10 @@ function Feed(props) {
                             <Image
                                 style={styles.image}
                                 source={{ uri: item.downloadURL }}
+                            />
+                            <Button
+                                title="Shop Products"
+                                onPress={() => props.navigation.navigate('ProductScreen', {proudctId: item.productId})}
                             />
                             { item.currentUserLike ?
                                 (

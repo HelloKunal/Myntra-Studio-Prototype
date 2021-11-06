@@ -1,4 +1,4 @@
-import { USER_STATE_CHANGE, USER_POSTS_STATE_CHANGE, USER_FOLLOWING_STATE_CHANGE, USERS_DATA_STATE_CHANGE,USERS_POSTS_STATE_CHANGE, USERS_LIKES_STATE_CHANGE, CLEAR_DATA} from '../constants/index'
+import { USER_STATE_CHANGE, USER_POSTS_STATE_CHANGE, USER_PRODUCTS_STATE_CHANGE, USER_FOLLOWING_STATE_CHANGE, USERS_DATA_STATE_CHANGE,USERS_POSTS_STATE_CHANGE, USERS_LIKES_STATE_CHANGE, CLEAR_DATA} from '../constants/index'
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -45,6 +45,25 @@ export function fetchUserPosts() {
                     return { id, ...data }
                 })
                 dispatch({ type: USER_POSTS_STATE_CHANGE, posts })
+            })
+    })
+}
+
+export function fetchUserProducts() {
+    return ((dispatch) => {
+        firebase.firestore()
+            .collection("products")
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userProducts")
+            .orderBy("creation", "asc")
+            .get()
+            .then((snapshot) => {
+                let products = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    const id = doc.id;
+                    return { id, ...data }
+                })
+                dispatch({ type: USER_PRODUCTS_STATE_CHANGE, products })
             })
     })
 }
@@ -134,7 +153,7 @@ export function fetchUsersFollowingLikes(uid, postId) {
             .collection("likes")
             .doc(firebase.auth().currentUser.uid)
             .onSnapshot((snapshot) => {
-                console.log(snapshot);
+                // console.log(snapshot);
                 const postId = snapshot._delegate.ref._key.path.segments[3];
 
                 let currentUserLike = false;

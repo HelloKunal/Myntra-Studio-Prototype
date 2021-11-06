@@ -6,6 +6,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { connect } from 'react-redux'
 
+import {useNavigation} from '@react-navigation/native';
+
 function Profile(props) {
     const [userPosts, setUserPosts] = useState([]);
     const [user, setUser] = useState(null);
@@ -76,6 +78,13 @@ function Profile(props) {
         firebase.auth().signOut();
     }
 
+    const navigation = useNavigation();
+
+    const onOrders = () => {        
+        event.preventDefault();
+        navigation.navigate("OrdersScreen", {uid: firebase.auth().currentUser.uid})
+    }
+
     if (user === null) {
         return <View />
     }
@@ -84,6 +93,29 @@ function Profile(props) {
             <View style={styles.containerInfo}>
                 <Text>{user.name}</Text>
                 <Text>{user.email}</Text>
+                <Button
+                        title="Your Orders"
+                        onPress={onOrders}
+                    />
+
+                <View style={styles.containerGallery}>
+                    <Text>Your Wardrobe</Text>
+                    <FlatList
+                        numColumns = {3}
+                        horizontal={false}
+                        data={userPosts}
+                        renderItem={({ item }) => (
+                            <View
+                                style={styles.containerImage}>
+
+                                <Image
+                                    style={styles.image}
+                                    source={{ uri: item.downloadURL }}
+                                />
+                            </View>
+                        )}
+                    />
+                </View>
 
                 {props.route.params.uid !== firebase.auth().currentUser.uid ? (
                     <View>
@@ -106,26 +138,6 @@ function Profile(props) {
                         onPress={() => onLogout()}
                     />}
             </View>
-
-            <View style={styles.containerGallery}>
-                <FlatList
-                    numColumns={3}
-                    horizontal={false}
-                    data={userPosts}
-                    renderItem={({ item }) => (
-                        <View
-                            style={styles.containerImage}>
-
-                            <Image
-                                style={styles.image}
-                                source={{ uri: item.downloadURL }}
-                            />
-                        </View>
-
-                    )}
-
-                />
-            </View>
         </View>
 
     )
@@ -139,7 +151,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     containerGallery: {
-        flex: 1
+        flex: 1,
     },
     containerImage: {
         flex: 1 / 3

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Image, FlatList, Button } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList, Button, TouchableOpacity } from 'react-native'
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { connect } from 'react-redux'
 
-import ProductScreen from '../../src/screens/ProductScreen'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 function Feed(props) {
     const [posts, setPosts] = useState([]);
@@ -18,7 +20,7 @@ function Feed(props) {
             })
             setPosts(props.feed);
         }
-        console.log(posts)
+        // console.log(posts)
 
     }, [props.usersFollowingLoaded, props.feed])
 
@@ -50,34 +52,62 @@ function Feed(props) {
                     horizontal={false}
                     data={posts}
                     renderItem={({ item }) => (
-                        <View
-                            style={styles.containerImage}>
-                            <Text style={styles.container}>{item.user.name}</Text>
-                            <Image
-                                style={styles.image}
-                                source={{ uri: item.downloadURL }}
-                            />
-                            <Button
-                                title="Shop Products"
-                                onPress={() => props.navigation.navigate('ProductScreen', {proudctId: item.productId})}
-                            />
+                        <View style={styles.containerImage}>
+                            <View style={styles.usernameContainer}>
+                                <Text style={styles.usernameStyle}>{item.user.name}</Text>
+                            </View>
+                            <View style={styles.imgContainer}>
+                                <Image
+                                    style={styles.image}
+                                    source={{ uri: item.downloadURL }}
+                                />
+                            </View>
+                            <View style={styles.buttonStyle}>
+                                <View style={styles.iconContainer}>
+                                <FontAwesome5 name="shopping-bag" color={'#231F20'} size={20} />
+                                </View>
+                                <View style={styles.ButtonView}>
+                                <TouchableOpacity
+                                        color = '#FFFFFF'
+                                        onPress={() => props.navigation.navigate('ProductDetails', {proudctId: item.productId})}
+                                    ><Text style={{color: '#000000'}}>Shop Products</Text></TouchableOpacity>
+                                </View>
+                            </View>
                             { item.currentUserLike ?
                                 (
-                                    <Button
-                                        title="Dislike"
-                                        onPress={() => onDislikePress(item.user.uid, item.id)} />
+                                    <View style={styles.buttonStyle}>
+                                        <View style={styles.iconContainer}>
+                                        <MaterialCommunityIcons name="heart-multiple" color={'#231F20'} size={20} />
+                                        </View>
+                                        <View style={styles.ButtonView}>
+                                        <TouchableOpacity
+                                                color = '#FFFFFF'
+                                                onPress={() => onDislikePress(item.user.uid, item.id)}
+                                            ><Text style={{color: '#000000'}}>Dislike</Text></TouchableOpacity>
+                                        </View>
+                                    </View>
                                 )
                                 :
                                 (
-                                    <Button
-                                        title="Like"
-                                        onPress={() => onLikePress(item.user.uid, item.id)} />
+                                   <View style={styles.buttonStyle}>
+                                        <View style={styles.iconContainer}>
+                                        <MaterialCommunityIcons name="heart-multiple" color={'#231F20'} size={20} />
+                                        </View>
+                                        <View style={styles.ButtonView}>
+                                        <TouchableOpacity
+                                                color = '#FFFFFF'
+                                                onPress={() => onLikePress(item.user.uid, item.id)}
+                                            ><Text style={{color: '#000000'}}>Like</Text></TouchableOpacity>
+                                        </View>
+                                    </View>
                                 )
                             }
-                            <Text
+                            <View style={styles.usernameContainer}>
+                                <Text style={styles.commentStyle}
                                 onPress={() => props.navigation.navigate('Comment', { postId: item.id, uid: item.user.uid })}>
                                 View Comments...
                                 </Text>
+                            </View>                            
                         </View>
 
                     )}
@@ -93,6 +123,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    usernameStyle: {        
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 16,
+        fontWeight: 'bold',
+        width: '100%'
+    },
+    usernameContainer: {
+        backgroundColor: '#FFFFFF',
+    },
+    commentStyle: {
+        fontSize: 14,
+
+    },
     containerInfo: {
         margin: 20
     },
@@ -100,12 +145,30 @@ const styles = StyleSheet.create({
         flex: 1
     },
     containerImage: {
-        flex: 1 / 3
+        // flex: 1 / 3
+    marginVertical: 10,
 
     },
     image: {
         flex: 1,
         aspectRatio: 1 / 1
+    },
+    imgContainer: {
+        height: 200,
+    },
+    buttonStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 50,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#efefef',
+    },
+    ButtonView: {
+        flexGrow: 1,        
+    },
+    iconContainer: {
+        width: 30,
     }
 })
 const mapStateToProps = (store) => ({

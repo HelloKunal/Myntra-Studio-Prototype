@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 
 import {useNavigation} from '@react-navigation/native';
 
-export default function Add(props) {
+function Add(props) {
   const navigation = useNavigation();   
 
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
@@ -65,20 +65,54 @@ export default function Add(props) {
           type={type}
           ratio={'1:1'} />
       </View>
-
-      <Button
-        title="Flip Image"
-        onPress={() => {
-          setType(
-            type === Camera.Constants.Type.back
-              ? Camera.Constants.Type.front
-              : Camera.Constants.Type.back
-          );
-        }}>
-      </Button>
-      <Button title="Take Picture" onPress={() => takePicture()} />
-      <Button title="Pick Image From Gallery" onPress={() => pickImage()} />
-      <Button title="Save" onPress={() => navigation.navigate('Save', { image, productId })} />
+      <View style={styles.buttonHolder}>
+        <View style={styles.buttonStyle}>
+            <View style={styles.iconContainer}>
+            </View>
+            <View style={styles.ButtonView}>
+            <TouchableOpacity
+                    color = '#FFFFFF'
+                    onPress={() => {
+            setType(
+              type === Camera.Constants.Type.back
+                ? Camera.Constants.Type.front
+                : Camera.Constants.Type.back
+            );
+          }}
+                ><Text style={styles.emailStyle}>Flip Image</Text></TouchableOpacity>
+            </View>
+        </View>
+        <View style={styles.buttonStyle}>
+            <View style={styles.iconContainer}>
+            </View>
+            <View style={styles.ButtonView}>
+            <TouchableOpacity
+                    color = '#FFFFFF'
+                    onPress={() => takePicture()}
+                ><Text style={styles.emailStyle}>Take Picture</Text></TouchableOpacity>
+            </View>
+        </View>
+        <View style={styles.buttonStyle}>
+            <View style={styles.iconContainer}>
+            </View>
+            <View style={styles.ButtonView}>
+            <TouchableOpacity
+                    color = '#FFFFFF'
+                    onPress={() => pickImage()}
+                ><Text style={styles.emailStyle}>Pick Image From Gallery</Text></TouchableOpacity>
+            </View>
+        </View>
+        <View style={styles.buttonStyle}>
+            <View style={styles.iconContainer}>
+            </View>
+            <View style={styles.ButtonView}>
+            <TouchableOpacity
+                    color = '#FFFFFF'
+                    onPress={() => navigation.navigate('Save', { image, productId })}
+                ><Text style={styles.emailStyle}>Save</Text></TouchableOpacity>
+            </View>
+        </View>
+      </View>
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
     </View>
   );
@@ -92,6 +126,32 @@ const styles = StyleSheet.create({
   fixedRatio: {
     flex: 1,
     aspectRatio: 1
+  },
+  buttonStyle: {
+      flex: 1,
+      flexDirection: 'row',
+      height: 50,
+      backgroundColor: '#ffffff',
+      borderWidth: 1,
+      borderColor: '#efefef',
+      marginVertical: 5,
+  },
+  ButtonView: {     
+  },
+  emailStyle: {
+      color: '#ff007f',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: 16,
+      width: '100%'
+  },
+  iconContainer: {
+      width: 30,
+  },
+  buttonHolder: {
+    height: 200,
   }
-
 })
+
+export default Add;

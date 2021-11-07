@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 2,
-    padding: 10,
     height: 150,
     resizeMode: 'contain',
   },
@@ -21,7 +20,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    marginVertical: 5,
   },
   price: {
     fontSize: 18,
@@ -39,19 +37,6 @@ const styles = StyleSheet.create({
   },
   star: {
     margin: 2,
-  },
-  buttonStyle: {
-      flex: 1,
-      flexDirection: 'row',
-      height: 100,
-      borderWidth: 1,
-      borderColor: '#efefef',
-  },
-  ButtonView: {
-      flexGrow: 1,        
-  },
-  iconContainer: {
-      width: 40,
   }
 });
 

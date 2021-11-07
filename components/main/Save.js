@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Image, Button } from 'react-native'
+import { View, StyleSheet, TextInput, Text, Image, TouchableOpacity } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 import firebase from 'firebase/compat/app';
@@ -8,7 +8,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 
-export default function Save(props) {
+function Save(props) {
     const [caption, setCaption] = useState("")
 
     const uploadImage = async () => {
@@ -63,12 +63,58 @@ export default function Save(props) {
     return (
         <View style={{ flex: 1 }}>
             <Image source={{ uri: props.route.params.image }} />
-            <TextInput
+            <TextInput style={styles.emailStyle}
                 placeholder="Write a Caption . . ."
                 onChangeText={(caption) => setCaption(caption)}
             />
 
-            <Button title="Save" onPress={() => uploadImage()} />
+            <View style={styles.buttonStyle}>
+                <View style={styles.iconContainer}>
+                </View>
+                <View style={styles.ButtonView}>
+                <TouchableOpacity
+                        color = '#ff007f'
+                        onPress={() => uploadImage()}
+                    ><Text style={styles.emailStyle2}>Save</Text></TouchableOpacity>
+                </View>
+            </View>
         </View>
     )
 }
+
+
+const styles = StyleSheet.create({
+    buttonStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 50,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#efefef',
+    },
+      emailStyle: {
+          color: '#ff007f',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: 16,
+          width: '100%'
+      },
+      emailStyle2: {
+          color: '#ffffff',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: 16,
+          fontWeight: 'bold',
+          width: '100%'
+      },
+    ButtonView: {
+        flexGrow: 1,        
+    },
+    iconContainer: {
+        width: 30,
+    }
+})
+
+export default Save;

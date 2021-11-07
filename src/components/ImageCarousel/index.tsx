@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		margin: 10,
-		height: 250,
+		height: 400,
 		// backgroundColor: 'red',
 		resizeMode: 'contain',
 	},

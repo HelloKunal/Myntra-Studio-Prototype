@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {Picker} from '@react-native-picker/picker';
 import product from '../../data/product';
@@ -9,73 +9,111 @@ import ImageCarousel from '../../components/ImageCarousel'
 import {useRoute} from '@react-navigation/native';
 
 
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 const ProductScreen = (props) => {
-  const [selectedOption, setSelectedOption] = useState(product.options ? product.options[0] : null);
   const [quantity, setQuantity] = useState(1);
   const [productData, setProductData] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(productData.options ? productData.options[0] : null);
 
   const route = useRoute();
-  // console.log(route.params);
+  // console.log(props);
 
-  useEffect(() => {
-      const productId = props.route.params.productId;
-      firebase.firestore()
-          .collection("productsData")
-          .doc(productId)
-          .get()
-          .then((snapshot) => {
-              // console.log(snapshot);
-              let prodData = snapshot.docs.map(doc => {
-                  const data = doc.data();
-                  const id = doc.id;
-                  return { id, ...data }
-              })
-              setProductData(prodData)
-          })
+  // useEffect(() => {
+  //     let productId = props.route.params.productId;
 
-  }, [])
+  //     productId = 'adadsadadwad'       
+  //       // console.log('starting')
+  //       firebase.firestore()
+  //           .collection("productsData")
+  //           .doc(productId)
+  //           .get()
+  //           .then((snapshot) => {
+  //               // console.log(snapshot);
+  //               let prodData = snapshot.docs.map(doc => {
+  //                   const data = doc.data();
+  //                   const id = doc.id;
+  //                   return { id, ...data }
+  //               })
+  //               setProductData(snapshot._delegate._document.data.value.mapValue.fields)
+  //               // console.log(snapshot._delegate._document.data.value.mapValue.fields);
+  //               // console.log(productData);
+  //           })
 
-  return (
-    <ScrollView style={styles.root}>
-      <Text style={styles.title}>{productData.title}</Text>
+  // }, [])
 
-      {/*Image Carosel*/}
-      <ImageCarousel images={productData.images} />
 
-      {/*Option Selector */}
-      <Picker 
-        selectedValue={selectedOption}
-        onValueChange={(itemValue) => setSelectedOption(itemValue)}>
-        {productData.options.map(option => 
-          <Picker.Item label={option} value={option} />
-        )}
-      </Picker>
+    return (
+      <ScrollView style={styles.root}>
 
-      {/*Price */}
-      <Text style={styles.price}>
-            from ${productData.price}
-            {productData.oldPrice && (
-              <Text style={styles.oldPrice}> ${productData.oldPrice}</Text>
-            )}
-      </Text>
+        {/*Image Carosel*/}
+        <View style={styles.imgStyle}>
+        <ImageCarousel images={product.images} />
+        </View>
 
-      {/*Description*/}
-      <Text style  = {styles.description}>
-        {productData.description}
-      </Text>
-      {/*Quantity Selector*/}
-      <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+        <View style={styles.textArea}>
+          <Text style={styles.title}>{product.title}</Text>
 
-      {/*Buttons*/}
-      <Button text={'ADD TO CART'} containerStyles={{backgroundColor: '#FFC0CB'}} onPress={() => {console.warn('Add to cart')}} />
-      <Button text={'BUY NOW'} onPress={() => {console.warn('Buy Now')}} />
-    </ScrollView>
-  );
+          {/*Price */}
+          <Text style={styles.price}>
+                from ${product.price}
+                {product.oldPrice && (
+                  <Text style={styles.oldPrice}> ${product.oldPrice}</Text>
+                )}
+          </Text>
+        </View>
+
+        {/*Buttons*/}
+        <View style={styles.buttonSidebySide}>
+          <View style={styles.buttonStyle}>
+              <View style={styles.iconContainer}>
+              <MaterialCommunityIcons name="email-newsletter" color={'#231F20'} size={26} />
+              </View>
+              <View style={styles.ButtonView}>
+              <TouchableOpacity
+                      color = '#FFFFFF'
+                      onPress={() => {}}
+                  ><Text style={{color: '#000000'}}>WISHLIST</Text></TouchableOpacity>
+              </View>
+          </View>
+          <View style={styles.button2Style}>
+              <View style={styles.iconContainer}>
+              <MaterialCommunityIcons name="email-newsletter" color={'#FFFFFF'} size={26} />
+              </View>
+              <View style={styles.ButtonView}>
+              <TouchableOpacity
+                      color = '#FFFFFF'
+                      onPress={() => {}}
+                  ><Text style={{color: '#FFFFFF', flex: 1, justifyContent: 'space-around', alignItems: 'space-around', fontWeight: 'bold'}}>ADD TO BAG</Text></TouchableOpacity>
+              </View>
+          </View>
+        </View>
+
+        {/*Option Selector */}
+        <Picker 
+          selectedValue={selectedOption}
+          onValueChange={(itemValue) => setSelectedOption(itemValue)}>
+          {product.options.map(option => 
+            <Picker.Item label={option} value={option} />
+          )}
+        </Picker>
+
+        {/*Description*/}
+        <Text style  = {styles.description}>
+          {product.description}
+        </Text>
+        {/*Quantity Selector*/}
+        <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+
+      </ScrollView>
+    );
 };
 
 export default ProductScreen;

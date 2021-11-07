@@ -39,10 +39,9 @@ function Orders(props) {
         <View style={styles.container}>
             <View style={styles.containerInfo}>
                 <View style={styles.containerList}>
-                    <Text>Your Wardrobe</Text>
+                    <Text style={styles.usernameStyle}>Your Wardrobe</Text>
                     <FlatList
-                        numColumns = {3}
-                        horizontal={false}
+                        showsVerticalScrollIndicator={false}
                         data={userProducts}
                         renderItem={({ item }) => (
                             <View style={styles.containerImage}>
@@ -64,13 +63,24 @@ function Orders(props) {
 
 const styles = StyleSheet.create({
     container: {
+        padding: 10,
+    },
+    usernameStyle: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+        width: '100%'
     },
     containerInfo: {
-        margin: 20
+        margin: 20,
+        flex: 1,
     },
     containerList: {
         flex: 1,
+        flexDirection: 'column',
     },
 })
 const mapStateToProps = (store) => ({

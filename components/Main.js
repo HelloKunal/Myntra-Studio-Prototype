@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Feather from 'react-native-vector-icons/Feather'
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -15,7 +17,7 @@ import ProfileScreen from './main/Profile'
 import SearchScreen from './main/Search'
 import HomeScreen from '../src/screens/HomeScreen'
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 const EmptyScreen = () => {
     return (null)
@@ -30,7 +32,12 @@ export class Main extends Component {
     }
     render() {
         return (
-            <Tab.Navigator initialRouteName="Feed" labeled={false}>
+            <Tab.Navigator initialRouteName="Feed" labeled={true} screenOptions={{
+              headerShown: true, 
+              tabBarInactiveTintColor: '#231F20', 
+              tabBarActiveTintColor: '#ff007f',
+              tabBarLabelPosition: 'below-icon',
+            }}>
                 <Tab.Screen name="Home" component={HomeScreen}
                     options={{
                         tabBarIcon: ({ color, size }) => (
@@ -40,19 +47,19 @@ export class Main extends Component {
                 <Tab.Screen name="Categories" component={SearchScreen} navigation={this.props.navigation}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="magnify" color={color} size={26} />
+                            <MaterialIcons name="category" color={color} size={26} />
                         ),
                     }} />
                 <Tab.Screen name="Studio" component={FeedScreen}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="home" color={color} size={26} />
+                            <Feather name="tv" color={color} size={26} />
                         ),
                     }} />
                 <Tab.Screen name="Explore" component={FeedScreen}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="home" color={color} size={26} />
+                            <MaterialCommunityIcons name="atom" color={color} size={26} />
                         ),
                     }} />
                 <Tab.Screen name="Profile" component={ProfileScreen}

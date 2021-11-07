@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import ProductItem from '../../components/ProductItem'
+import HomeProductItem from '../../components/HomeProductItem'
 
 import products from '../../data/products';
 
@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
       <FlatList
         data = {products}
-        renderItem = {({item}) => <ProductItem item={item} />}
+        renderItem = {({item}) => <HomeProductItem item={item} />}
         showsVerticalScrollIndicator={false}
       />
     </View>

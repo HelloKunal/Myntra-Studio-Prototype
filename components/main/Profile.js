@@ -118,7 +118,7 @@ function Profile(props) {
                 </View>
 
                 <View style={styles.containerGallery}>
-                    <Text style={styles.emailStyle}>Your Wardrobe</Text>
+                    <Text style={styles.emailStyle}>Digital Wardrobe</Text>
                     <FlatList
                         data={userPosts}
                         horizontal

@@ -1,23 +1,22 @@
 export default {
-  id: '5',
-  title: "Logitech MX Master 3 Advanced Wireless Mouse for Mac - Bluetooth/USB",
-  description: `Features & details
-  - MAGSPEED WHEEL: Ultra-fast, precise, quiet MagSpeed electromagnetic scrolling
-  - DARKFIELD 4000 DPI SENSOR: Darkfield 4000 DPI sensor for precise tracking on any surface, even glass (up to 4mm in thickness)
-  - COMFORTABLE DESIGN: Tactile reference for hand positioning makes it easy to stay oriented and in your flow
-  - FLOW CROSS-COMPUTER CONTROL: Supports flow cross-computer control across multiple screens. Pair up to 3 devices via Bluetooth Low Energy or Unifying USB receiver`,
-  image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg',
+  id: '2EHegAttSW0lZ1b4cpDW',
+  title: "Men Green Self Design Straight Kurta",
+  description: `Green self-design straight kurta, has a mandarin collar, button closure, long sleeves, two pockets, curved hem, and side slits`,
+  image: 'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/13566594/2021/2/12/bb3d61fe-2ed7-4146-b039-16174959df9e1613121266366-Manthan-Men-Green-Solid-Straight-Kurta-411613121265043-1.jpg',
   images: [
-    'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg',
-    'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse2.jpg',
-    'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse3.jpg',
+    'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/13566594/2021/2/12/bb3d61fe-2ed7-4146-b039-16174959df9e1613121266366-Manthan-Men-Green-Solid-Straight-Kurta-411613121265043-1.jpg',
+    'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/13566594/2021/2/12/d4434e94-e001-405d-801e-3ee705c8262f1613121266339-Manthan-Men-Green-Solid-Straight-Kurta-411613121265043-2.jpg',
+    'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/13566594/2021/2/12/b6c37c92-9537-41b5-a974-bdde8a5573f71613121266230-Manthan-Men-Green-Solid-Straight-Kurta-411613121265043-6.jpg',
   ],
   options: [
-    'Black',
-    'Space Grey'
+    'S',
+    'M',
+    'L',
+    'XL',
+    'XXL',
   ],
-  avgRating: 4.8,
-  ratings: 2989,
-  price: 99.98,
-  oldPrice: 120.06,
+  avgRating: 3.5,
+  ratings: 2,
+  price: 899,
+  oldPrice: 1000,
 };

@@ -35,7 +35,7 @@ const ProductItem = ({ item }) => {
       <Image style={styles.image} source = {{ uri: item.productURL}} />
 
       <View style={styles.rightContainer}>
-        <Text style={styles.title} numberOfLines={3}>{item.productId}</Text>     
+        <Text style={styles.title} numberOfLines={3}>{item.title}</Text>     
         <View style={styles2.button2Style}>
             <View style={styles.ButtonView}>
             <TouchableOpacity
@@ -44,21 +44,6 @@ const ProductItem = ({ item }) => {
                 ><Text style={{color: '#FFFFFF', fontSize: 16,}}>Add to Wardrobe</Text></TouchableOpacity>
             </View>
         </View>
-        {/*Rating*/}
-        <View style={styles.ratingsContainer}>
-
-          {[0, 0, 0, 0, 0].map((el, index) =>
-            <FontAwesome key={`${item.productId}-${index}`}style={styles.star} name={index < Math.floor(item.avgRating) ? 'star' : 'star-o'} size={18} color={"#e47911"} />
-          )}
-
-          <Text>{item.ratings}</Text>
-        </View>
-        <Text style={styles.price}>
-          from ${item.price.toFixed(2)}
-          {item.oldPrice && (
-            <Text style={styles.oldPrice}> ${item.oldPrice.toFixed(2)}</Text>
-          )}
-        </Text>
       </View>
     </View>
   );

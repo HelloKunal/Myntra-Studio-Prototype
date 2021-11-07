@@ -7,6 +7,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
+import data from '../../src/data/product';
+
 
 function Save(props) {
     const [caption, setCaption] = useState("")
@@ -61,17 +63,20 @@ function Save(props) {
             }))
     }
     return (
-        <View style={{ flex: 1 }}>
-            <Image source={{ uri: props.route.params.image }} />
-            <TextInput style={styles.emailStyle}
-                placeholder="Write a Caption . . ."
-                onChangeText={(caption) => setCaption(caption)}
-            />
-
+        <View style={styles.root}>
+            <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={{ uri: props.route.params.image }} />
+            </View>
+            <View style={styles.element}>
+                <TextInput style={styles.emailStyle}
+                    placeholder="Write a Caption . . ."
+                    onChangeText={(caption) => setCaption(caption)}
+                />
+            </View>
             <View style={styles.buttonStyle}>
                 <View style={styles.iconContainer}>
                 </View>
-                <View style={styles.ButtonView}>
+                <View style={styles.buttonHolder}>
                 <TouchableOpacity
                         color = '#ff007f'
                         onPress={() => uploadImage()}
@@ -82,13 +87,34 @@ function Save(props) {
     )
 }
 
+//
+                    
 
 const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        // flexDirection: 'column',
+    },
+    element: {
+        flexGrow: 0,
+        height: 50,     
+    },
+    imageContainer: {
+        flex: 1,
+        resizeMode: 'cover',  
+        flexBasis: 450,
+        flexGrow: 0,  
+    },
+    image: {
+        flex: 1,
+    },
     buttonStyle: {
         flex: 1,
         flexDirection: 'row',
+        flexBasis: 50,
+        flexGrow: 0,
         height: 50,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#ff007f',
         borderWidth: 1,
         borderColor: '#efefef',
     },
@@ -101,20 +127,21 @@ const styles = StyleSheet.create({
           width: '100%'
       },
       emailStyle2: {
+        marginVertical: 10,
           color: '#ffffff',
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: 16,
+          fontSize: 22,
           fontWeight: 'bold',
           width: '100%'
       },
-    ButtonView: {
-        flexGrow: 1,        
-    },
-    iconContainer: {
-        width: 30,
-    }
+  iconContainer: {
+      width: 30,
+  },
+  buttonHolder: {
+    height: 50,
+  }
 })
 
 export default Save;

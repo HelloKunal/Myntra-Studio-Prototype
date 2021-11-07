@@ -151,10 +151,10 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        aspectRatio: 1 / 1
+        resizeMode: 'cover',
     },
     imgContainer: {
-        height: 200,
+        height: 300,
     },
     buttonStyle: {
         flex: 1,

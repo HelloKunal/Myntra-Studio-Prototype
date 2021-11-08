@@ -92,8 +92,7 @@ function Profile(props) {
 
     const navigation = useNavigation();
 
-    const onOrders = () => {        
-        event.preventDefault();
+    const onOrders = () => {       
         navigation.navigate("OrdersScreen", {uid: firebase.auth().currentUser.uid})
     }
 

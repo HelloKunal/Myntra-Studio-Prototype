@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Myntra",
+    "name": "Myntra Studio",
     "slug": "Myntra",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This is project is part of the hackathon 'Myntra HackerRamp: Campus Edition 2021' organized by Myntra on Dare2compete.",
+    "githubUrl": "https://github.com/HelloKunal/Myntra-Studio-Prototype/tree/main"
   }
 }

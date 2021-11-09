@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myntrastudio-dev-105956-authRole",
+      "UnauthRoleArn": "arn:aws:iam::466886733210:role/amplify-myntrastudio-dev-105956-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::466886733210:role/amplify-myntrastudio-dev-105956-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-myntrastudio-dev-105956-deployment",
+      "UnauthRoleName": "amplify-myntrastudio-dev-105956-unauthRole",
+      "StackName": "amplify-myntrastudio-dev-105956",
+      "StackId": "arn:aws:cloudformation:us-east-1:466886733210:stack/amplify-myntrastudio-dev-105956/ec0afc90-3b9d-11ec-a37c-12b4e91bf9eb",
+      "AmplifyAppId": "d2q8ct1b9ztz72"
+    },
+    "categories": {
+      "auth": {
+        "myntrastudio87b64212": {}
+      }
+    }
+  },
+  "demo": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myntrastudio-demo-184222-authRole",
+      "UnauthRoleArn": "arn:aws:iam::466886733210:role/amplify-myntrastudio-demo-184222-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::466886733210:role/amplify-myntrastudio-demo-184222-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-myntrastudio-demo-184222-deployment",
+      "UnauthRoleName": "amplify-myntrastudio-demo-184222-unauthRole",
+      "StackName": "amplify-myntrastudio-demo-184222",
+      "StackId": "arn:aws:cloudformation:us-east-1:466886733210:stack/amplify-myntrastudio-demo-184222/db7bfc10-3d70-11ec-981f-0ea0edc1b421",
+      "AmplifyAppId": "d243b1cg5xvyjx"
+    },
+    "categories": {
+      "auth": {
+        "myntrastudio452e1563": {}
+      }
+    }
+  }
+}

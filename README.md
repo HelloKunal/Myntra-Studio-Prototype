@@ -2,7 +2,7 @@
 
 # Run in PC, Android rn has some issues with stack navigator
 1. Install Expo
-```npm install expo```
+```npm install --global expo-cli```
 2. Clone the repo
 3. Inside the folder, do 
 ```npm install```
